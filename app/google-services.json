@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "172711656452",
+    "firebase_url": "https://sharecetas.firebaseio.com",
+    "project_id": "sharecetas",
+    "storage_bucket": "sharecetas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172711656452:android:ca177df14b6dc26c",
+        "android_client_info": {
+          "package_name": "com.example.didact.sharecetasalpha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172711656452-olmb76e3injkjmnpro2cja7k3dhnovrs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.didact.sharecetasalpha",
+            "certificate_hash": "46afcb6f5bdd4bee56dd00d772cb446370d04bc0"
+          }
+        },
+        {
+          "client_id": "172711656452-ug4hlk9kueo5p03kr72emtnibo52aia6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyClJPmn85bF0ceRxg2uKpncu2G3wtNvgEc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172711656452-ug4hlk9kueo5p03kr72emtnibo52aia6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
