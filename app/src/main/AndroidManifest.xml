@@ -23,7 +23,8 @@
         <activity android:name=".BuscadorActivity" />
         <activity android:name=".FavoritoActivity" />
         <activity android:name=".ConfiguracionActivity" />
-        <activity android:name=".CrearRecetaActivity"></activity>
+        <activity android:name=".CrearRecetaActivity" />
+        <activity android:name=".RecetaAbiertaActivity"></activity>
     </application>
 
 </manifest>
