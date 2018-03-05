@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class AdaptadorReceta extends ArrayAdapter<CReceta> {
     ArrayList<CReceta> recetas;
     Context c;
-    public AdaptadorReceta(Context c, ArrayList<CReceta> coches) {
-        super(c, R.layout.item_receta, coches);
+    public AdaptadorReceta(Context c, ArrayList<CReceta> recetas) {
+        super(c, R.layout.item_receta, recetas);
         this.recetas = recetas;
         this.c = c;
     }

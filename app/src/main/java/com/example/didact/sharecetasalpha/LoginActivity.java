@@ -15,7 +15,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void clickInicio(View view){
 
-        Intent mainIntent = new Intent().setClass(getApplicationContext(), RegistroActivity.class);
+        Intent mainIntent = new Intent().setClass(getApplicationContext(), MisRecetasActivity.class);
         startActivity(mainIntent);
         finish();
 

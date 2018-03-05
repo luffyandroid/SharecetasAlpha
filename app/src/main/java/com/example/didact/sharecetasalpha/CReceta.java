@@ -37,6 +37,10 @@ public class CReceta implements Parcelable{
 
     }
 
+    public CReceta(){
+
+    }
+
     public String getNombre() {
         return nombre;
     }

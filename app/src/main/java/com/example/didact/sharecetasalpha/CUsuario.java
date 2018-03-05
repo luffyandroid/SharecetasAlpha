@@ -3,15 +3,17 @@ package com.example.didact.sharecetasalpha;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 /**
  * Created by Luffyandroid on 02/03/2018.
  */
 
 public class CUsuario implements Parcelable{
     String email;
-    String usuario;
+    String nombre;
     String contrasena;
-    String contrasena2;
+    String[] fav;
     String foto;
     String descripcion;
     String comidafav;
@@ -26,11 +28,11 @@ public class CUsuario implements Parcelable{
                 }
             };
 
-    public CUsuario(String email, String usuario, String contrasena, String contrasena2, String foto, String descripcion, String comidafav) {
+    public CUsuario(String email, String usuario, String contrasena, String[] fav, String foto, String descripcion, String comidafav) {
         this.email = email;
-        this.usuario = usuario;
+        this.nombre = usuario;
         this.contrasena = contrasena;
-        this.contrasena2 = contrasena2;
+        this.fav = fav;
         this.foto = foto;
         this.descripcion = descripcion;
         this.comidafav = comidafav;
@@ -38,6 +40,10 @@ public class CUsuario implements Parcelable{
 
     public CUsuario(Parcel p){
         readFromParcel(p);
+    }
+
+    public CUsuario(){
+
     }
 
     public String getEmail() {
@@ -48,12 +54,12 @@ public class CUsuario implements Parcelable{
         this.email = email;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setUsuario(String nombre) {
-        this.usuario = nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getContrasena() {
@@ -64,12 +70,12 @@ public class CUsuario implements Parcelable{
         this.contrasena = contrasena;
     }
 
-    public String getContrasena2() {
-        return contrasena2;
+    public String[] getFav() {
+        return fav;
     }
 
-    public void setContrasena2(String contrasena2) {
-        this.contrasena2 = contrasena2;
+    public void setFav(String[] contrasena2) {
+        this.fav = fav;
     }
 
     public String getFoto() {
@@ -104,9 +110,9 @@ public class CUsuario implements Parcelable{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.email);
-        dest.writeString(this.usuario);
+        dest.writeString(this.nombre);
         dest.writeString(this.contrasena);
-        dest.writeString(this.contrasena2);
+        dest.writeStringArray(this.fav);
         dest.writeString(this.foto);
         dest.writeString(this.descripcion);
         dest.writeString(this.comidafav);
@@ -114,9 +120,9 @@ public class CUsuario implements Parcelable{
 
     private void readFromParcel(Parcel p){
         this.email = p.readString();
-        this.usuario = p.readString();
+        this.nombre = p.readString();
         this.contrasena = p.readString();
-        this.contrasena2 = p.readString();
+        p.readStringArray(this.fav);
         this.foto = p.readString();
         this.descripcion = p.readString();
         this.comidafav = p.readString();

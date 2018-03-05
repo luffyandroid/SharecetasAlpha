@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/SharecetasAlpha.iml" filepath="$PROJECT_DIR$/.idea/SharecetasAlpha.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SharecetasAlpha.iml" filepath="$PROJECT_DIR$/SharecetasAlpha.iml" />
+      <module fileurl="file://C:\Users\DIDACT\AndroidStudioProjects\SharecetasAlpha\.idea\SharecetasAlpha.iml" filepath="C:\Users\DIDACT\AndroidStudioProjects\SharecetasAlpha\.idea\SharecetasAlpha.iml" />
       <module fileurl="file://C:\Users\Luffyandroid\AndroidStudioProjects\SharecetasAlpha\SharecetasAlpha.iml" filepath="C:\Users\Luffyandroid\AndroidStudioProjects\SharecetasAlpha\SharecetasAlpha.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

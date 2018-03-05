@@ -27,16 +27,26 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/etNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="Nombre"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/etPreparacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Escribe aqui los pasos de la receta"
         android:inputType="textMultiLine" />
 
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="fotoCrearReceta"
         app:srcCompat="@android:drawable/ic_menu_camera" />
 
     <Button
