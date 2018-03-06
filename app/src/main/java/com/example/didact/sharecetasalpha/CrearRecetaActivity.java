@@ -20,7 +20,7 @@ import java.util.Locale;
 public class CrearRecetaActivity extends AppCompatActivity {
 
     EditText etNombre, etPreparacion;
-    String foto;
+    String foto="";
     TextView tvUsuario;
     DatabaseReference dbRef;
     @Override
@@ -63,7 +63,7 @@ public class CrearRecetaActivity extends AppCompatActivity {
 
                     }else{
 
-                        Toast.makeText(getApplicationContext(),"No se puede insertar el jugador",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"No se puede insertar la receta",Toast.LENGTH_LONG).show();
 
                     }
                 }

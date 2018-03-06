@@ -4,13 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
+    android:background="@color/colorfondo"
     tools:context="com.example.didact.sharecetasalpha.InicioActivity">
 
     <Button
         android:id="@+id/btnInicioLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        style="@style/botoninicio"
+        android:layout_marginBottom="@dimen/d15"
         android:onClick="clickLogin"
         android:text="Inicio" />
 
@@ -19,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="clickRegistrar"
+        style="@style/botoninicio"
         android:text="Registrar" />
 
 </LinearLayout>

@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Luffyandroid on 02/03/2018.
@@ -13,7 +14,7 @@ public class CUsuario implements Parcelable{
     String email;
     String nombre;
     String contrasena;
-    String[] fav;
+    List<String> fav;
     String foto;
     String descripcion;
     String comidafav;
@@ -28,7 +29,7 @@ public class CUsuario implements Parcelable{
                 }
             };
 
-    public CUsuario(String email, String usuario, String contrasena, String[] fav, String foto, String descripcion, String comidafav) {
+    public CUsuario(String email, String usuario, String contrasena,  List<String> fav, String foto, String descripcion, String comidafav) {
         this.email = email;
         this.nombre = usuario;
         this.contrasena = contrasena;
@@ -39,6 +40,7 @@ public class CUsuario implements Parcelable{
     }
 
     public CUsuario(Parcel p){
+
         readFromParcel(p);
     }
 
@@ -70,11 +72,11 @@ public class CUsuario implements Parcelable{
         this.contrasena = contrasena;
     }
 
-    public String[] getFav() {
+    public  List<String> getFav() {
         return fav;
     }
 
-    public void setFav(String[] contrasena2) {
+    public void setFav( List<String> contrasena2) {
         this.fav = fav;
     }
 
@@ -112,7 +114,7 @@ public class CUsuario implements Parcelable{
         dest.writeString(this.email);
         dest.writeString(this.nombre);
         dest.writeString(this.contrasena);
-        dest.writeStringArray(this.fav);
+        dest.writeList(this.fav);
         dest.writeString(this.foto);
         dest.writeString(this.descripcion);
         dest.writeString(this.comidafav);
@@ -122,7 +124,7 @@ public class CUsuario implements Parcelable{
         this.email = p.readString();
         this.nombre = p.readString();
         this.contrasena = p.readString();
-        p.readStringArray(this.fav);
+        p.readStringList(this.fav);
         this.foto = p.readString();
         this.descripcion = p.readString();
         this.comidafav = p.readString();
