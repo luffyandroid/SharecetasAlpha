@@ -38,13 +38,13 @@ public class FavoritoActivity extends AppCompatActivity {
 
         Intent mainIntent = new Intent().setClass(getApplicationContext(), MisRecetasActivity.class);
         startActivity(mainIntent);
-        finish();
+
     }
     public void clickBuscadorFav(View view){
 
         Intent mainIntent = new Intent().setClass(getApplicationContext(), BuscadorActivity.class);
         startActivity(mainIntent);
-        finish();
+
 
     }
     public void clickFavoritosFav(View view){
@@ -57,7 +57,7 @@ public class FavoritoActivity extends AppCompatActivity {
 
         Intent mainIntent = new Intent().setClass(getApplicationContext(), ConfiguracionActivity.class);
         startActivity(mainIntent);
-        finish();
+
 
     }
 

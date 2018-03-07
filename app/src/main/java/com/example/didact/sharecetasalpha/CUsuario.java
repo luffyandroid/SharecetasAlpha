@@ -124,7 +124,7 @@ public class CUsuario implements Parcelable{
         this.email = p.readString();
         this.nombre = p.readString();
         this.contrasena = p.readString();
-        p.readStringList(this.fav);
+        p.readList(this.fav,null);
         this.foto = p.readString();
         this.descripcion = p.readString();
         this.comidafav = p.readString();

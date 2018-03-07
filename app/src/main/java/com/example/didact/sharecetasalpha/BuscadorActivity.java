@@ -44,7 +44,7 @@ public class BuscadorActivity extends AppCompatActivity {
 
         Intent mainIntent = new Intent().setClass(getApplicationContext(), MisRecetasActivity.class);
         startActivity(mainIntent);
-        finish();
+
     }
     public void clickBuscadorBus(View view){
 
@@ -55,14 +55,14 @@ public class BuscadorActivity extends AppCompatActivity {
 
         Intent mainIntent = new Intent().setClass(getApplicationContext(), FavoritoActivity.class);
         startActivity(mainIntent);
-        finish();
+
 
     }
     public void clickConfiguracionBus(View view){
 
         Intent mainIntent = new Intent().setClass(getApplicationContext(), ConfiguracionActivity.class);
         startActivity(mainIntent);
-        finish();
+
 
     }
 }

@@ -15,6 +15,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+
 public class LoginActivity extends AppCompatActivity {
 
     EditText etUsuarioLogin, etContrasenaLogin;
@@ -51,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Usuario incorrecto", Toast.LENGTH_SHORT).show();
                 } else {
                     CUsuario usu = dataSnapshot.getValue(CUsuario.class);
+
                     String contrasenadb = usu.getContrasena();
 
                     if (!contrasena.equals(contrasenadb)) {
@@ -59,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
 
                         Intent mainIntent = new Intent().setClass(getApplicationContext(), MisRecetasActivity.class);
+                        mainIntent.putExtra(EXTRA_USUARIO, usu);
                         startActivity(mainIntent);
                         finish();
 
@@ -75,6 +79,12 @@ public class LoginActivity extends AppCompatActivity {
         };
         dbRef.addValueEventListener(valueEventListener);
 
+
+    }
+
+    public void clickInicionolog(View view){
+        Intent i=new Intent(getApplicationContext(),MisRecetasActivity.class);
+        startActivity(i);
 
     }
 

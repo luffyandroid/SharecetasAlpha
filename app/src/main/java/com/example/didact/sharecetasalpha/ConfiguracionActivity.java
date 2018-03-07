@@ -29,20 +29,20 @@ public class ConfiguracionActivity extends AppCompatActivity {
 
         Intent mainIntent = new Intent().setClass(getApplicationContext(), MisRecetasActivity.class);
         startActivity(mainIntent);
-        finish();
+
     }
     public void clickBuscadorConf(View view){
 
         Intent mainIntent = new Intent().setClass(getApplicationContext(), BuscadorActivity.class);
         startActivity(mainIntent);
-        finish();
+
 
     }
     public void clickFavoritosConf(View view){
 
         Intent mainIntent = new Intent().setClass(getApplicationContext(), FavoritoActivity.class);
         startActivity(mainIntent);
-        finish();
+
 
     }
     public void clickConfiguracionConf(View view){

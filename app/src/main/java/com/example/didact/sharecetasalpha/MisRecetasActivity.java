@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +22,7 @@ public class MisRecetasActivity extends AppCompatActivity {
     static final String EXTRA_RECETA="RECETA";
 
     ListView lvRecetas;
+    TextView tvUsuarioMisRecetas;
     ArrayList<CReceta> listaRecetas = new ArrayList<CReceta>();
 
     DatabaseReference dbRef;
@@ -34,6 +36,15 @@ public class MisRecetasActivity extends AppCompatActivity {
         cargarDatosFirebase();
 
         lvRecetas = (ListView)findViewById(R.id.lvRecetas);
+        tvUsuarioMisRecetas=(TextView)findViewById(R.id.tvUsuarioMisRecetas);
+
+        Bundle b= getIntent().getExtras();
+
+        if (b!=null){
+
+            CUsuario usu = b.getParcelable(LoginActivity.EXTRA_USUARIO);
+            tvUsuarioMisRecetas.setText(usu.getNombre());
+        }
 
 
 
@@ -47,7 +58,7 @@ public class MisRecetasActivity extends AppCompatActivity {
 
         Intent mainIntent = new Intent().setClass(getApplicationContext(), CrearRecetaActivity.class);
         startActivity(mainIntent);
-        finish();
+
 
     }
 
@@ -59,21 +70,21 @@ public class MisRecetasActivity extends AppCompatActivity {
 
         Intent mainIntent = new Intent().setClass(getApplicationContext(), BuscadorActivity.class);
         startActivity(mainIntent);
-        finish();
+
 
     }
     public void clickFavoritosRes(View view){
 
         Intent mainIntent = new Intent().setClass(getApplicationContext(), FavoritoActivity.class);
         startActivity(mainIntent);
-        finish();
+
 
     }
     public void clickConfiguracionRes(View view){
 
         Intent mainIntent = new Intent().setClass(getApplicationContext(), ConfiguracionActivity.class);
         startActivity(mainIntent);
-        finish();
+
 
     }
     private void cargarListView (DataSnapshot dataSnapshot){
@@ -100,9 +111,9 @@ public class MisRecetasActivity extends AppCompatActivity {
 
     private void cargarDatosFirebase(){
 
-        dbRef= FirebaseDatabase.getInstance().getReference().child("receta");
+            dbRef= FirebaseDatabase.getInstance().getReference().child("receta");
 
-        valueEventListener = new ValueEventListener() {
+            valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 listaRecetas.clear();
@@ -115,7 +126,8 @@ public class MisRecetasActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
                 Log.e("MisRecetasActivity", "DATABASE ERROR");
             }
-        };
+            };
+
         dbRef.addValueEventListener(valueEventListener);
 
     }
