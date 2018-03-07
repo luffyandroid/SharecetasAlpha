@@ -77,7 +77,7 @@ public class RegistroActivity extends AppCompatActivity {
 
                             }else{
 
-                                Toast.makeText(getApplicationContext(),"No se puede insertar la receta",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),"No se puede insertar el usuario",Toast.LENGTH_LONG).show();
 
                             }
                         }
