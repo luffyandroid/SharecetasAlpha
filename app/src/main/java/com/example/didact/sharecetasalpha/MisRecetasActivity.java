@@ -79,15 +79,17 @@ public class MisRecetasActivity extends AppCompatActivity {
 
     }
     public void clickFavoritosRes(View view){
-
+        datosUsuario();
         Intent mainIntent = new Intent().setClass(getApplicationContext(), FavoritoActivity.class);
+        mainIntent.putExtra(EXTRA_USUARIO, usu);
         startActivity(mainIntent);
 
 
     }
     public void clickConfiguracionRes(View view){
-
+        datosUsuario();
         Intent mainIntent = new Intent().setClass(getApplicationContext(), ConfiguracionActivity.class);
+        mainIntent.putExtra(EXTRA_USUARIO, usu);
         startActivity(mainIntent);
 
 

@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 public class BuscadorActivity extends AppCompatActivity {
     static final String EXTRA_RECETA="RECETA";
+    static final String EXTRA_USUARIO="USUARIO";
 
     TextView tvUsuarioBuscador;
     ListView lvBuscador;
@@ -63,7 +64,9 @@ public class BuscadorActivity extends AppCompatActivity {
 
     public void clickRecetasBus(View view){
 
+        datosUsuario();
         Intent mainIntent = new Intent().setClass(getApplicationContext(), MisRecetasActivity.class);
+        mainIntent.putExtra(EXTRA_USUARIO, usu);
         startActivity(mainIntent);
 
     }
@@ -73,15 +76,17 @@ public class BuscadorActivity extends AppCompatActivity {
 
     }
     public void clickFavoritosBus(View view){
-
+        datosUsuario();
         Intent mainIntent = new Intent().setClass(getApplicationContext(), FavoritoActivity.class);
+        mainIntent.putExtra(EXTRA_USUARIO, usu);
         startActivity(mainIntent);
 
 
     }
     public void clickConfiguracionBus(View view){
-
+        datosUsuario();
         Intent mainIntent = new Intent().setClass(getApplicationContext(), ConfiguracionActivity.class);
+        mainIntent.putExtra(EXTRA_USUARIO, usu);
         startActivity(mainIntent);
 
 
@@ -129,6 +134,30 @@ public class BuscadorActivity extends AppCompatActivity {
         };
 
         dbRef.addValueEventListener(valueEventListener);
+
+    }
+
+    public void datosUsuario() {
+
+        String usuario = tvUsuarioBuscador.getText().toString();
+
+
+        dbRef = FirebaseDatabase.getInstance().getReference().child("usuario/" + usuario);
+
+        valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                usu = dataSnapshot.getValue(CUsuario.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("LoginActivity", "DATABASE ERROR");
+            }
+        };
+        dbRef.addValueEventListener(valueEventListener);
+
 
     }
 

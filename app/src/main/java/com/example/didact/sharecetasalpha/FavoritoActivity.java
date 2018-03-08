@@ -21,6 +21,7 @@ import java.util.List;
 
 public class FavoritoActivity extends AppCompatActivity {
     static final String EXTRA_RECETA="RECETA";
+    static final String EXTRA_USUARIO="USUARIO";
 
     ListView lvFavorito;
     ArrayList<CReceta> listaFavorito = new ArrayList<CReceta>();
@@ -36,7 +37,8 @@ public class FavoritoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorito);
 
-        pruebafavoritos();
+        //pruebafavoritos();
+        cargarDatosFirebase();
 
         lvFavorito = (ListView)findViewById(R.id.lvRecetas);
         tvUsuarioFav=(TextView)findViewById(R.id.tvUsuarioFav);
@@ -60,15 +62,16 @@ public class FavoritoActivity extends AppCompatActivity {
 
 
     public void clickRecetasFav(View view){
-
+        datosUsuario();
         Intent mainIntent = new Intent().setClass(getApplicationContext(), MisRecetasActivity.class);
-
+        mainIntent.putExtra(EXTRA_USUARIO, usu);
         startActivity(mainIntent);
 
     }
     public void clickBuscadorFav(View view){
-
+        datosUsuario();
         Intent mainIntent = new Intent().setClass(getApplicationContext(), BuscadorActivity.class);
+        mainIntent.putExtra(EXTRA_USUARIO, usu);
         startActivity(mainIntent);
 
 
@@ -80,14 +83,15 @@ public class FavoritoActivity extends AppCompatActivity {
 
     }
     public void clickConfiguracionFav(View view){
-
+        datosUsuario();
         Intent mainIntent = new Intent().setClass(getApplicationContext(), ConfiguracionActivity.class);
+        mainIntent.putExtra(EXTRA_USUARIO, usu);
         startActivity(mainIntent);
 
 
     }
 
-    private void pruebafavoritos(){
+    /*private void pruebafavoritos(){
         List<String> lista_favoritos = usu.getFav();
 
         for (int i=0; i<lista_favoritos.size(); i++){
@@ -113,7 +117,7 @@ public class FavoritoActivity extends AppCompatActivity {
             dbRef.addValueEventListener(valueEventListener);
 
         }
-    }
+    }*/
 
 
 
@@ -142,6 +146,53 @@ public class FavoritoActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private void cargarDatosFirebase(){
+
+        dbRef= FirebaseDatabase.getInstance().getReference().child("receta");
+
+        valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                listaFavorito.clear();
+                for (DataSnapshot recetaDataSnapshot: dataSnapshot.getChildren()){
+                    cargarListView(recetaDataSnapshot);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("MisRecetasActivity", "DATABASE ERROR");
+            }
+        };
+
+        dbRef.addValueEventListener(valueEventListener);
+
+    }
+
+    public void datosUsuario() {
+
+        String usuario = tvUsuarioFav.getText().toString();
+
+
+        dbRef = FirebaseDatabase.getInstance().getReference().child("usuario/" + usuario);
+
+        valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                usu = dataSnapshot.getValue(CUsuario.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("LoginActivity", "DATABASE ERROR");
+            }
+        };
+        dbRef.addValueEventListener(valueEventListener);
+
 
     }
 
