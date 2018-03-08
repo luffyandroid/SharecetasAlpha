@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MisRecetasActivity extends AppCompatActivity {
     static final String EXTRA_RECETA="RECETA";
@@ -28,6 +29,7 @@ public class MisRecetasActivity extends AppCompatActivity {
     DatabaseReference dbRef;
     ValueEventListener valueEventListener;
 
+    CUsuario usu=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +44,7 @@ public class MisRecetasActivity extends AppCompatActivity {
 
         if (b!=null){
 
-            CUsuario usu = b.getParcelable(LoginActivity.EXTRA_USUARIO);
+              usu = b.getParcelable(LoginActivity.EXTRA_USUARIO);
             tvUsuarioMisRecetas.setText(usu.getNombre());
         }
 
@@ -87,48 +89,60 @@ public class MisRecetasActivity extends AppCompatActivity {
 
 
     }
+
+
+
+
     private void cargarListView (DataSnapshot dataSnapshot){
-        listaRecetas.add(dataSnapshot.getValue(CReceta.class));
 
-        AdaptadorReceta adaptadorReceta=new AdaptadorReceta(this,listaRecetas);
-        lvRecetas.setAdapter(adaptadorReceta);
+        CReceta r =dataSnapshot.getValue(CReceta.class);
 
-        lvRecetas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CReceta c =((CReceta)parent.getItemAtPosition(position));
-                String nombre = c.getNombre();
-                String usuario=c.getUsuario();
-                String preparacion=c.getPreparacion();
-                String foto=c.getFoto();
-                CReceta recetaenviada=new CReceta(nombre, usuario, preparacion, foto);
-                Intent i = new Intent(getApplicationContext(), RecetaAbiertaActivity.class);
-                i.putExtra(EXTRA_RECETA, recetaenviada);
-                startActivity(i);
-            }
-        });
+        if (r.getUsuario().equals(usu.getNombre())) {
+            listaRecetas.add(dataSnapshot.getValue(CReceta.class));
+
+            AdaptadorReceta adaptadorReceta=new AdaptadorReceta(this,listaRecetas);
+            lvRecetas.setAdapter(adaptadorReceta);
+
+            lvRecetas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    CReceta c =((CReceta)parent.getItemAtPosition(position));
+                    String nombre = c.getNombre();
+                    String usuario=c.getUsuario();
+                    String preparacion=c.getPreparacion();
+                    String foto=c.getFoto();
+                    CReceta recetaenviada=new CReceta(nombre, usuario, preparacion, foto);
+                    Intent i = new Intent(getApplicationContext(), RecetaAbiertaActivity.class);
+                    i.putExtra(EXTRA_RECETA, recetaenviada);
+                    startActivity(i);
+                }
+            });
+        }
+
     }
 
     private void cargarDatosFirebase(){
 
-            dbRef= FirebaseDatabase.getInstance().getReference().child("receta");
+
+            dbRef = FirebaseDatabase.getInstance().getReference().child("receta");
+
 
             valueEventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                listaRecetas.clear();
-                for (DataSnapshot recetaDataSnapshot: dataSnapshot.getChildren()){
-                    cargarListView(recetaDataSnapshot);
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    listaRecetas.clear();
+                    for (DataSnapshot recetaDataSnapshot : dataSnapshot.getChildren()) {
+                        cargarListView(recetaDataSnapshot);
+                    }
                 }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.e("MisRecetasActivity", "DATABASE ERROR");
-            }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.e("MisRecetasActivity", "DATABASE ERROR");
+                }
             };
 
-        dbRef.addValueEventListener(valueEventListener);
+            dbRef.addValueEventListener(valueEventListener);
 
     }
 

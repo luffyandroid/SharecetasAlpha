@@ -22,8 +22,7 @@
     <TextView
         android:id="@+id/tvFalloLogin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Fallo inicio" />
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/textView8"

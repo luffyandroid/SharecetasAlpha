@@ -25,6 +25,7 @@ public class AdaptadorReceta extends ArrayAdapter<CReceta> {
         LayoutInflater inflater =
                 LayoutInflater.from(getContext());
         View item = inflater.inflate(R.layout.item_receta, null);
+
         TextView tvNombre = (TextView)
                 item.findViewById(R.id.tvNombreItem);
         tvNombre.setText(recetas.get(position).getNombre() );

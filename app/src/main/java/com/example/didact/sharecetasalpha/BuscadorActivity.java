@@ -3,36 +3,55 @@ package com.example.didact.sharecetasalpha;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class BuscadorActivity extends AppCompatActivity {
+    static final String EXTRA_RECETA="RECETA";
 
+    TextView tvUsuarioBuscador;
     ListView lvBuscador;
     ArrayList<CReceta> listaBuscador = new ArrayList<CReceta>();
+
+    DatabaseReference dbRef;
+    ValueEventListener valueEventListener;
+
+    CUsuario usu=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscador);
 
-        cargarDatos();
+        cargarDatosFirebase();
+
+        Bundle b= getIntent().getExtras();
+
+        if (b!=null){
+
+            usu = b.getParcelable(LoginActivity.EXTRA_USUARIO);
+            tvUsuarioBuscador.setText(usu.getNombre());
+        }
+
 
         lvBuscador = (ListView)findViewById(R.id.lvBuscador);
 
-        AdaptadorReceta adaptadorReceta = new AdaptadorReceta(this,listaBuscador);
-        lvBuscador.setAdapter(adaptadorReceta);
 
     }
 
-    private void cargarDatos(){
-        listaBuscador.add(new CReceta("Sandwich","Pepe123","pan, york y queso","foto de sandwich"));
-        listaBuscador.add(new CReceta("Espaguetis","Jimena5823","oregano, pasta y tomate","foto de espaguetis"));
-        listaBuscador.add(new CReceta("Tortilla","Luiti23","huevo y papas","foto de tortilla"));
-    }
+
 
     public void buscarReceta(View view){
 
@@ -65,4 +84,50 @@ public class BuscadorActivity extends AppCompatActivity {
 
 
     }
+
+    private void cargarListView (DataSnapshot dataSnapshot){
+        listaBuscador.add(dataSnapshot.getValue(CReceta.class));
+
+        AdaptadorReceta adaptadorReceta=new AdaptadorReceta(this,listaBuscador);
+        lvBuscador.setAdapter(adaptadorReceta);
+
+        lvBuscador.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CReceta c =((CReceta)parent.getItemAtPosition(position));
+                String nombre = c.getNombre();
+                String usuario=c.getUsuario();
+                String preparacion=c.getPreparacion();
+                String foto=c.getFoto();
+                CReceta recetaenviada=new CReceta(nombre, usuario, preparacion, foto);
+                Intent i = new Intent(getApplicationContext(), RecetaAbiertaActivity.class);
+                i.putExtra(EXTRA_RECETA, recetaenviada);
+                startActivity(i);
+            }
+        });
+    }
+
+    private void cargarDatosFirebase(){
+
+        dbRef= FirebaseDatabase.getInstance().getReference().child("receta");
+
+        valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                listaBuscador.clear();
+                for (DataSnapshot recetaDataSnapshot: dataSnapshot.getChildren()){
+                    cargarListView(recetaDataSnapshot);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("MisRecetasActivity", "DATABASE ERROR");
+            }
+        };
+
+        dbRef.addValueEventListener(valueEventListener);
+
+    }
+
 }
