@@ -21,6 +21,8 @@ import java.util.List;
 
 public class MisRecetasActivity extends AppCompatActivity {
     static final String EXTRA_RECETA="RECETA";
+    static final String EXTRA_USUARIO="USUARIO";
+
 
     ListView lvRecetas;
     TextView tvUsuarioMisRecetas;
@@ -69,8 +71,9 @@ public class MisRecetasActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"Subir arriba",Toast.LENGTH_LONG).show();
     }
     public void clickBuscadorRes(View view){
-
+        datosUsuario();
         Intent mainIntent = new Intent().setClass(getApplicationContext(), BuscadorActivity.class);
+        mainIntent.putExtra(EXTRA_USUARIO, usu);
         startActivity(mainIntent);
 
 
@@ -143,6 +146,34 @@ public class MisRecetasActivity extends AppCompatActivity {
             };
 
             dbRef.addValueEventListener(valueEventListener);
+
+    }
+
+
+    //-----------------------------------------------------------------
+
+
+    public void datosUsuario() {
+
+        String usuario = tvUsuarioMisRecetas.getText().toString();
+
+
+        dbRef = FirebaseDatabase.getInstance().getReference().child("usuario/" + usuario);
+
+        valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    usu = dataSnapshot.getValue(CUsuario.class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("LoginActivity", "DATABASE ERROR");
+            }
+        };
+        dbRef.addValueEventListener(valueEventListener);
+
 
     }
 

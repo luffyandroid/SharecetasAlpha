@@ -37,6 +37,8 @@ public class BuscadorActivity extends AppCompatActivity {
 
         cargarDatosFirebase();
 
+        tvUsuarioBuscador=(TextView)findViewById(R.id.tvUsuarioBuscador);
+
         Bundle b= getIntent().getExtras();
 
         if (b!=null){
