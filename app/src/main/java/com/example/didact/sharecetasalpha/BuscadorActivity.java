@@ -109,6 +109,8 @@ public class BuscadorActivity extends AppCompatActivity {
                 CReceta recetaenviada=new CReceta(nombre, usuario, preparacion, foto);
                 Intent i = new Intent(getApplicationContext(), RecetaAbiertaActivity.class);
                 i.putExtra(EXTRA_RECETA, recetaenviada);
+                datosUsuario();
+                i.putExtra(EXTRA_USUARIO, usu);
                 startActivity(i);
             }
         });

@@ -20,7 +20,7 @@
             app:srcCompat="@mipmap/ic_launcher_round" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/tvNombreUsuarioRecetaAbierta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="mis recetas abierta" />
@@ -93,7 +93,9 @@
                 <ImageView
                     android:id="@+id/imgRecetaAbierta"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="170dp"
+                    android:cropToPadding="false"
+                    android:scaleType="fitCenter"
                     app:srcCompat="@android:drawable/btn_star_big_on" />
 
                 <TextView
