@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class BuscadorActivity extends AppCompatActivity {
 
     TextView tvUsuarioBuscador;
     ListView lvBuscador;
+    EditText etBuscador;
     ArrayList<CReceta> listaBuscador = new ArrayList<CReceta>();
 
     DatabaseReference dbRef;
@@ -50,6 +52,7 @@ public class BuscadorActivity extends AppCompatActivity {
 
 
         lvBuscador = (ListView)findViewById(R.id.lvBuscador);
+        etBuscador= (EditText)findViewById(R.id.etBuscador);
 
 
     }
@@ -126,6 +129,61 @@ public class BuscadorActivity extends AppCompatActivity {
                 listaBuscador.clear();
                 for (DataSnapshot recetaDataSnapshot: dataSnapshot.getChildren()){
                     cargarListView(recetaDataSnapshot);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("MisRecetasActivity", "DATABASE ERROR");
+            }
+        };
+
+        dbRef.addValueEventListener(valueEventListener);
+
+    }
+
+    private void cargarBusqueda(DataSnapshot dataSnapshot){
+
+        CReceta r =dataSnapshot.getValue(CReceta.class);
+
+        String busqueda=etBuscador.getText().toString();
+
+        if (r.getUsuario().contains(busqueda) || r.getNombre().contains(busqueda) || r.getPreparacion().contains(busqueda)) {
+            listaBuscador.add(dataSnapshot.getValue(CReceta.class));
+
+            AdaptadorReceta adaptadorReceta=new AdaptadorReceta(this,listaBuscador);
+            lvBuscador.setAdapter(adaptadorReceta);
+
+            lvBuscador.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    CReceta c =((CReceta)parent.getItemAtPosition(position));
+                    String nombre = c.getNombre();
+                    String usuario=c.getUsuario();
+                    String preparacion=c.getPreparacion();
+                    String foto=c.getFoto();
+                    CReceta recetaenviada=new CReceta(nombre, usuario, preparacion, foto);
+                    Intent i = new Intent(getApplicationContext(), RecetaAbiertaActivity.class);
+                    i.putExtra(EXTRA_RECETA, recetaenviada);
+                    datosUsuario();
+                    i.putExtra(EXTRA_USUARIO, usu);
+                    startActivity(i);
+                }
+            });
+        }
+
+    }
+
+    public void cargarBusquedaFirebase(View view){
+
+        dbRef= FirebaseDatabase.getInstance().getReference().child("receta");
+
+        valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                listaBuscador.clear();
+                for (DataSnapshot recetaDataSnapshot: dataSnapshot.getChildren()){
+                    cargarBusqueda(recetaDataSnapshot);
                 }
             }
 

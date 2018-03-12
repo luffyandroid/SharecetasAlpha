@@ -74,19 +74,19 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/etBuscador"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Name" />
+                android:hint="Busca lo que quieres o recetas de alguien en concreto" />
 
             <Button
                 android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="buscarReceta"
+                android:onClick="cargarBusquedaFirebase"
                 android:layout_weight="1"
                 android:text="Button" />
         </LinearLayout>
