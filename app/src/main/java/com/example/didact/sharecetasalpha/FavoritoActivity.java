@@ -37,7 +37,7 @@ public class FavoritoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorito);
 
-        //pruebafavoritos();
+
         cargarDatosFirebase();
 
         lvFavorito = (ListView)findViewById(R.id.lvRecetas);
@@ -51,7 +51,7 @@ public class FavoritoActivity extends AppCompatActivity {
             tvUsuarioFav.setText(usu.getNombre());
         }
 
-
+        //pruebafavoritos();
         lvFavorito = (ListView)findViewById(R.id.lvFavorito);
 
         AdaptadorReceta adaptadorReceta = new AdaptadorReceta(this,listaFavorito);

@@ -52,6 +52,8 @@ public class LoginActivity extends AppCompatActivity {
                     // tvFalloLogin.setText("El usuario no existe");
                     Toast.makeText(getApplicationContext(), "Usuario incorrecto", Toast.LENGTH_SHORT).show();
                 } else {
+
+
                     CUsuario usu = dataSnapshot.getValue(CUsuario.class);
 
                     String contrasenadb = usu.getContrasena();
