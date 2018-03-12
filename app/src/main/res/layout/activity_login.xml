@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorfondo"
     tools:context="com.example.didact.sharecetasalpha.LoginActivity">
 
     <LinearLayout
@@ -54,6 +55,7 @@
         android:id="@+id/btnLoginFin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/botoninicio"
         android:onClick="clickInicio"
         android:text="¡A COCINAR!" />
 </LinearLayout>

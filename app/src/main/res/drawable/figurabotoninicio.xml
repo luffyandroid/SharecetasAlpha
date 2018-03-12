@@ -9,6 +9,10 @@
     <solid
         android:color="@color/colorboton"
         />
+    <margin
+        android:left="10dp"
+        android:right="10dp"
+        />
     <padding
         android:left="0dp"
         android:top="0dp"
