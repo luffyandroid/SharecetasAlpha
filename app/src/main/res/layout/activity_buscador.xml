@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorfondo"
     android:orientation="vertical"
     tools:context="com.example.didact.sharecetasalpha.BuscadorActivity">
     <LinearLayout
@@ -13,21 +14,25 @@
 
         <ImageView
             android:id="@+id/imageView"
+            android:layout_margin="@dimen/d10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_usuario" />
 
         <TextView
             android:id="@+id/tvUsuarioBuscador"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:text="buscador" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/d10"
+        android:layout_marginLeft="@dimen/d10"
         android:orientation="horizontal">
 
         <ImageButton
@@ -35,37 +40,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            style="@style/boton2"
             android:onClick="clickRecetasBus"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_recetas" />
 
         <ImageButton
             android:id="@+id/btnBuscadorBuscador"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            style="@style/boton"
             android:onClick="clickBuscadorBus"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_buscador" />
 
         <ImageButton
             android:id="@+id/btnFavoritoBuscador"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            style="@style/boton2"
             android:onClick="clickFavoritosBus"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_favorito" />
 
         <ImageButton
             android:id="@+id/btnConfiguracionBuscador"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            style="@style/boton2"
             android:onClick="clickConfiguracionBus"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_configuracion" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        style="@style/layout"
         android:orientation="vertical">
 
         <LinearLayout
@@ -80,15 +90,17 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:hint="Busca lo que quieres o recetas de alguien en concreto" />
+                android:hint="Busca por recetas o usuarios" />
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+
+            <ImageButton
+                android:id="@+id/imageButton6"
+                android:layout_width="@dimen/d45"
+                android:layout_height="@dimen/d50"
+                style="@style/botoninicio"
                 android:onClick="cargarBusquedaFirebase"
                 android:layout_weight="1"
-                android:text="Button" />
+                app:srcCompat="@mipmap/ic_lupa" />
         </LinearLayout>
 
         <ListView

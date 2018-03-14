@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorfondo"
     android:orientation="vertical"
     tools:context="com.example.didact.sharecetasalpha.CrearRecetaActivity">
 
@@ -16,44 +17,58 @@
             android:id="@+id/imgUsuarioCrearRecetas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            android:layout_margin="@dimen/d10"
+            app:srcCompat="@mipmap/ic_usuario" />
 
         <TextView
             android:id="@+id/tvUsuarioCrearRecetas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:text="Sharecetas" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/etNombre"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Nombre"
-        android:inputType="textPersonName" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/etPreparacion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Escribe aqui los pasos de la receta"
-        android:inputType="textMultiLine" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="fotoCrearReceta"
-        app:srcCompat="@android:drawable/ic_menu_camera" />
+            style="@style/layoutCrearReceta"
+            android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/btnFinReceta"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="finalizarReceta"
-        android:text="Guardar receta" />
+            <EditText
+                android:id="@+id/etNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Nombre"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/etPreparacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Escribe aqui los pasos de la receta"
+                android:inputType="textMultiLine" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="fotoCrearReceta"
+                app:srcCompat="@android:drawable/ic_menu_camera" />
+
+            <Button
+                android:id="@+id/btnFinReceta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="finalizarReceta"
+                android:text="Guardar receta" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

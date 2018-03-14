@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorfondo"
     android:orientation="vertical"
     tools:context="com.example.didact.sharecetasalpha.RecetaAbiertaActivity">
 
@@ -14,21 +15,25 @@
 
         <ImageView
             android:id="@+id/ivUsuarioRecetasAbi"
+            android:layout_margin="@dimen/d10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_usuario" />
 
         <TextView
             android:id="@+id/tvNombreUsuarioRecetaAbierta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:text="mis recetas abierta" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/d10"
+        android:layout_marginLeft="@dimen/d10"
         android:orientation="horizontal">
 
         <ImageButton
@@ -36,36 +41,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            style="@style/boton"
             android:onClick="clickRecetasResAbi"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_recetas" />
 
         <ImageButton
             android:id="@+id/btnBuscadorRecetasAbiertas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            style="@style/boton2"
             android:onClick="clickBuscadorResAbi"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_buscador" />
 
         <ImageButton
             android:id="@+id/btnFavoritoRecetasAbiertas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            style="@style/boton2"
             android:onClick="clickFavoritosResAbi"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_favorito" />
 
         <ImageButton
             android:id="@+id/btnConfiguracionRecetasAbiertas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            style="@style/boton2"
             android:onClick="clickConfiguracionResAbi"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_configuracion" />
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
+        style="@style/layout"
         android:layout_height="match_parent">
 
         <ScrollView
@@ -117,28 +127,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@mipmap/ic_launcher_round" />
+                android:layout_marginRight="@dimen/d10"
+                style="@style/botoninicio"
+                app:srcCompat="@mipmap/ic_compartir" />
 
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@mipmap/ic_launcher_round" />
-
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@mipmap/ic_launcher_round" />
 
             <ImageButton
                 android:id="@+id/imageButton5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@mipmap/ic_launcher_round" />
+                android:layout_marginLeft="@dimen/d10"
+                style="@style/botoninicio"
+                app:srcCompat="@mipmap/ic_favorito" />
         </LinearLayout>
     </RelativeLayout>
 

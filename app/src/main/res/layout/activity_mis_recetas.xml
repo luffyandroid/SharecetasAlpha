@@ -16,14 +16,16 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
+            android:layout_margin="@dimen/d10"
             android:layout_height="wrap_content"
 
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_usuario" />
 
         <TextView
             android:id="@+id/tvUsuarioMisRecetas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:text="mis recetas" />
     </LinearLayout>
 
@@ -36,39 +38,39 @@
 
         <ImageButton
             android:id="@+id/btnRecetasRecetas"
+            style="@style/boton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/boton"
             android:onClick="clickRecetasRes"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_recetas" />
 
         <ImageButton
             android:id="@+id/btnBuscadorRecetas"
+            style="@style/boton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/boton2"
             android:onClick="clickBuscadorRes"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_buscador" />
 
         <ImageButton
             android:id="@+id/btnFavoritoRecetas"
+            style="@style/boton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/boton2"
             android:onClick="clickFavoritosRes"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_favorito" />
 
         <ImageButton
             android:id="@+id/btnConfiguracionRecetas"
+            style="@style/boton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            style="@style/boton2"
             android:onClick="clickConfiguracionRes"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            app:srcCompat="@mipmap/ic_configuracion" />
     </LinearLayout>
 
     <RelativeLayout
@@ -78,7 +80,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/d70"
+            android:layout_marginBottom="@dimen/d75"
             style="@style/layout"
             android:orientation="vertical">
 
@@ -93,6 +95,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_marginRight="@dimen/d10"
+            android:layout_marginLeft="@dimen/d10"
+            android:layout_marginBottom="@dimen/d10"
             style="@style/botoninicio"
             android:onClick="nuevaReceta"
             android:text="Crear receta" />
